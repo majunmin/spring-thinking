@@ -1,0 +1,6 @@
+rootProject.name = 'spring-thinking'
+include 'spring-bean-sample'
+include 'think-common'
+include 'ioc-container-overview'
+include 'spring-dependency-lookup'
+
