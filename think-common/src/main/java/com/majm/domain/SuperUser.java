@@ -1,7 +1,7 @@
 package com.majm.domain;
 
 /**
- * 一句话功能简述 </br>
+ *   </br>
  *
  * @author majunmin
  * @description

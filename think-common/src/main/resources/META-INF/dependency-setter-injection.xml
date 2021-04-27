@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.majm.domain.User" name="user">
+        <property name="name" value="majm"/>
+        <property name="city" value="HANGZHOU"/>
+    </bean>
+
+    <bean class="com.majm.domain.SuperUser" id="superUser">
+        <property name="name" value="majm"/>
+        <property name="address" value="浙江"/>
+        <property name="city" value="HANGZHOU"/>
+    </bean>
+
+    <bean class="com.majm.domain.UserHolder" name="userHolder">
+        <property name="user" ref="user"/>
+    </bean>
+
+</beans>

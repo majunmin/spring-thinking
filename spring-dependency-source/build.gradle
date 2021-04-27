@@ -10,9 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.projectlombok:lombok:1.18.20'
-
-    implementation 'javax.inject:javax.inject:1'
+    compile project(':think-common')
     implementation 'org.springframework:spring-context:5.3.5'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
