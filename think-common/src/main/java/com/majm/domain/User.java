@@ -5,6 +5,7 @@ import org.springframework.beans.factory.BeanNameAware;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Properties;
 
 /**
  * 一句话功能简述 </br>
@@ -23,6 +24,16 @@ public class User implements BeanNameAware {
     private Integer age;
 
     private City city;
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
+    private Properties properties;
 
     /**
      * 当前beanName
@@ -72,12 +83,12 @@ public class User implements BeanNameAware {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println(this.beanName + ": 用户信息初始化回调... ");
     }
 
     @PreDestroy
-    public void destroy(){
+    public void destroy() {
         System.out.println(this.beanName + ": 用户信息销毁回调...");
     }
 
