@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'com.majm'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':think-common')
+
+    implementation 'org.springframework:spring-context:5.3.5'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1' // log4j2 api 接口
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'  // lo4j2  的日志输出核心包
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.1'  // slf4j 转接到  log4j2 日志输出框架
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    implementation 'commons-io:commons-io:2.8.0'
+    implementation 'org.hibernate.validator:hibernate-validator:6.2.0.Final'
+    implementation 'org.mortbay.jasper:apache-el:9.0.29'
+//    implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
+//    implementation 'jakarta.annotation:jakarta.annotation-api:2.0.0'
+
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,2 @@
+# 定义 namespace 与 Handler 的关联
+http\://www.majm.com/schema/users=com.majm.spring.UsersNamespaceHandler
