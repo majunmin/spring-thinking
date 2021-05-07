@@ -21,22 +21,21 @@ import java.util.concurrent.Executors;
  * <p>
  * {@link SimpleApplicationEventMulticaster#multicastEvent(ApplicationEvent, ResolvableType)}
  * ```
- *    @Override
- *    public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {
- * 		ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
- * 		Executor executor = getTaskExecutor();
- * 		for (ApplicationListener<?> listener : getApplicationListeners(event, type)) {
- * 			if (executor != null) {
- * 				executor.execute(() -> invokeListener(listener, event));
- *            }
- * 			else {
- * 				invokeListener(listener, event);
- *            }
- *        }
- *    }
- * ```
  *
  * @author majunmin
+ * @Override public void multicastEvent(final ApplicationEvent event, @Nullable ResolvableType eventType) {
+ * ResolvableType type = (eventType != null ? eventType : resolveDefaultEventType(event));
+ * Executor executor = getTaskExecutor();
+ * for (ApplicationListener<?> listener : getApplicationListeners(event, type)) {
+ * if (executor != null) {
+ * executor.execute(() -> invokeListener(listener, event));
+ * }
+ * else {
+ * invokeListener(listener, event);
+ * }
+ * }
+ * }
+ * ```
  * @description
  * @datetime 2021-04-29 20:23
  * @since
@@ -61,7 +60,7 @@ public class AsyncEventHandlerDemo {
             ((SimpleApplicationEventMulticaster) eventMulticaster).setTaskExecutor(executor);
 
 
-            // 容器关闭时回调
+            // 容器关闭时回调  graceful shutdown
             eventMulticaster.addApplicationListener(new ApplicationListener<ContextClosedEvent>() {
                 @Override
                 public void onApplicationEvent(ContextClosedEvent event) {
@@ -87,8 +86,6 @@ public class AsyncEventHandlerDemo {
                 throw new RuntimeException("occur exception in event handler!");
             }
         });
-
-
 
 
         applicationContext.publishEvent(new CustomEvent1("applicationContext"));

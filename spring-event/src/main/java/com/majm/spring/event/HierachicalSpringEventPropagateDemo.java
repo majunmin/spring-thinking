@@ -7,6 +7,8 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
  * 层次性事件传播示例 </br>
+ * <p>
+ * 子应用上下文发布的事件 父应用上下文可以监听到
  *
  * @author majunmin
  * @description

@@ -83,24 +83,24 @@ ApplicationEventMulticaster 的 注入地方
 
 ```java
     //  AbstractApplicationContext.applicationEventMulticaster  初始化后就不会为空
-protected void initApplicationEventMulticaster(){
-        ConfigurableListableBeanFactory beanFactory=getBeanFactory();
-        if(beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)){
-        this.applicationEventMulticaster=
-        beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME,ApplicationEventMulticaster.class);
-        if(logger.isTraceEnabled()){
-        logger.trace("Using ApplicationEventMulticaster ["+this.applicationEventMulticaster+"]");
+    protected void initApplicationEventMulticaster() {
+        ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+        if (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) {
+            this.applicationEventMulticaster =
+            beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
+            if (logger.isTraceEnabled()) {
+                logger.trace("Using ApplicationEventMulticaster [" + this.applicationEventMulticaster + "]");
+            }
         }
+        else {
+            this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
+            beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, this.applicationEventMulticaster);
+            if (logger.isTraceEnabled()) {
+                logger.trace("No '" + APPLICATION_EVENT_MULTICASTER_BEAN_NAME + "' bean, using " +
+                "[" + this.applicationEventMulticaster.getClass().getSimpleName() + "]");
+            }
         }
-        else{
-        this.applicationEventMulticaster=new SimpleApplicationEventMulticaster(beanFactory);
-        beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME,this.applicationEventMulticaster);
-        if(logger.isTraceEnabled()){
-        logger.trace("No '"+APPLICATION_EVENT_MULTICASTER_BEAN_NAME+"' bean, using "+
-        "["+this.applicationEventMulticaster.getClass().getSimpleName()+"]");
-        }
-        }
-        }
+    }
 ```
 
 ## ApplicationEventPublisher 底层实现
@@ -119,34 +119,45 @@ AbstractApplicationContext 进行桥接
         // Decorate event as an ApplicationEvent if necessary
         ApplicationEvent applicationEvent;
         if(event instanceof ApplicationEvent){
-        applicationEvent=(ApplicationEvent)event;
+            applicationEvent=(ApplicationEvent)event;
         }
         else{
-        applicationEvent=new PayloadApplicationEvent<>(this,event);
-        if(eventType==null){
-        eventType=((PayloadApplicationEvent<?>)applicationEvent).getResolvableType();
-        }
+            applicationEvent=new PayloadApplicationEvent<>(this,event);
+            if(eventType==null){
+                eventType=((PayloadApplicationEvent<?>)applicationEvent).getResolvableType();
+            }
         }
 
         // Multicast right now if possible - or lazily once the multicaster is initialized
         if(this.earlyApplicationEvents!=null){
-        this.earlyApplicationEvents.add(applicationEvent);
+            this.earlyApplicationEvents.add(applicationEvent);
         }
         else{
-        getApplicationEventMulticaster().multicastEvent(applicationEvent,eventType);
+            getApplicationEventMulticaster().multicastEvent(applicationEvent,eventType);
         }
 
         // Publish event via parent context as well ...
         if(this.parent!=null){
-        if(this.parent instanceof AbstractApplicationContext){
-        ((AbstractApplicationContext)this.parent).publishEvent(event,eventType);
+            if(this.parent instanceof AbstractApplicationContext){
+                ((AbstractApplicationContext)this.parent).publishEvent(event,eventType);
+            }
+            else{
+                this.parent.publishEvent(event);
+            }
         }
-        else{
-        this.parent.publishEvent(event);
-        }
-        }
-        }
+    }
 ```
+
+## ApplicationEventMulticaster 底层
+
+`org.springframework.context.event.AbstractApplicationEventMulticaster#retrieverCache`
+用来缓存 事件类型 到  监听器列表(`CachedListenerRetriever`)的缓存
+
+> 如果 MySpringEvent1 extends MySpringEvent2 
+> 那么 publishEvent(MySpringEvent1), MySpringEvent2的事件监听器也能监听到
+
+
+
 
 ### earlyApplicationEvents 作用？
 
