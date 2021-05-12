@@ -3,16 +3,15 @@ package com.majm.spring.annotation;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
- * {@link org.springframework.context.annotation.ComponentScan}  sample </br>
+ * spring 元注解属性覆盖 </br>
  *
  * @author majunmin
  * @description
- * @datetime 2021-05-04 10:29
+ * @datetime 2021-05-08 22:39
  * @since
  */
-//@ComponentScan(basePackages = "com.majm.spring.annotation")
-@MyComponentScan(scanBasePackages = "com.majm.spring.annotation")
-public class ComponentScanDemo {
+@MyComponentScan2(scanBasePackages = "#")
+public class AttributeOverrideDemo {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();

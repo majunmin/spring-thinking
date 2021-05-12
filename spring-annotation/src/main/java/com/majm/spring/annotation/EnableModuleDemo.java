@@ -11,11 +11,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * @since
  */
 @EnableHelloWorld
-public class HelloWorldDemo {
+public class EnableModuleDemo {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
-        applicationContext.register(HelloWorldDemo.class);
+        applicationContext.register(EnableModuleDemo.class);
         applicationContext.refresh();
 
         String helloWorld = applicationContext.getBean(String.class);
