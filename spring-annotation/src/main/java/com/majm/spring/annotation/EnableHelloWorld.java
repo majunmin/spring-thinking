@@ -13,8 +13,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 //@Import(HelloWorldConfiguration.class)  //@Configuration
-//@Import(HelloWorldImportSelector.class)  //ImportSelector
-@Import(HelloWorldImportBeanDefinitionRegistrar.class)
+@Import(HelloWorldImportSelector.class)  //ImportSelector
+//@Import(HelloWorldImportBeanDefinitionRegistrar.class)
 public @interface EnableHelloWorld {
 //    String value() default "";
 }

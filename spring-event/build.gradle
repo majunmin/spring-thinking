@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':think-common')
+    implementation project(':think-common')
 
     implementation 'org.springframework:spring-context:5.3.5'
     implementation 'org.slf4j:slf4j-api:1.7.30'

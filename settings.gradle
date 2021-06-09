@@ -16,4 +16,6 @@ include 'spring-event'
 include 'spring-i18n'
 include 'spring-validator'
 include 'spring-conversion'
+include 'application-context-lifecycle'
+include 'spring-kafka-demo'
 

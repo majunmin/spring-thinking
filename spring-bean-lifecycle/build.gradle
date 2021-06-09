@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':think-common')
+    implementation project(':think-common')
     implementation 'org.projectlombok:lombok:1.18.20'
     implementation 'org.springframework:spring-context:5.3.5'
 

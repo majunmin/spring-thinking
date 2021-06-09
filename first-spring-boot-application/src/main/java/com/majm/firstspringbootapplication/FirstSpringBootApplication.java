@@ -3,6 +3,7 @@ package com.majm.firstspringbootapplication;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,7 @@ public class FirstSpringBootApplication {
 
 
     @Bean
+    @ConditionalOnClass(value = {String.class, Integer.class})
     public RouterFunction<ServerResponse> helloWorld() {
         return route(GET("/helloWorld"), serverRequest ->
                 ok().body(Mono.just("hello World"), new ParameterizedTypeReference<Mono<? super String>>() {})

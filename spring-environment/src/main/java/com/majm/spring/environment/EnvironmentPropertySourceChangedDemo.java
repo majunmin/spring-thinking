@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MapPropertySource;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 import javax.sound.sampled.Line;
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class EnvironmentPropertySourceChangedDemo {
 
     public static void main(String[] args) {
 
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
         applicationContext.register(EnvironmentPropertySourceChangedDemo.class);
 
         Map<String, Object> map = new HashMap<>();
