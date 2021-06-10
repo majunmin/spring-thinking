@@ -1,7 +1,15 @@
-
 group 'com.majm'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+subprojects {
+    // 省略其它内容
+    configurations.all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude module: 'logback-classic'
+        exclude module: 'logback-core'
+    }
 }
