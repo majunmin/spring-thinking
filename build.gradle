@@ -1,3 +1,4 @@
+
 group 'com.majm'
 version '1.0-SNAPSHOT'
 
@@ -6,6 +7,7 @@ repositories {
 }
 
 subprojects {
+
     // 省略其它内容
     configurations.all {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
