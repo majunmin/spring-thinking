@@ -48,9 +48,9 @@ public class AspectJConfig {
     @Before("anyMethod()")
     public void beforeExecute() {
         Random ran = new Random();
-        if (ran.nextBoolean()) {
-            throw new RuntimeException("For propose!");
-        }
+//        if (ran.nextBoolean()) {
+//            throw new RuntimeException("For propose!");
+//        }
 
         System.out.println("@Before any method...");
     }

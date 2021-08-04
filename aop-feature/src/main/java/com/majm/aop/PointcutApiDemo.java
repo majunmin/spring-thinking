@@ -1,10 +1,8 @@
 package com.majm.aop;
 
 import com.majm.aop.pointcut.EchoServicePointcut;
-import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
-import org.springframework.cglib.proxy.MethodInterceptor;
 
 /**
  * PointCut api 方式的使用</br>

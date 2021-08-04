@@ -1,4 +1,4 @@
-package com.majm.aop.pointcut;
+package com.majm.aop;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,14 +9,6 @@ import org.springframework.util.ClassUtils;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-/**
- * {@link org.springframework.aop.Pointcut} APi实现 </br>
- *
- * @author majunmin
- * @description
- * @datetime 2021-06-12 11:07
- * @since
- */
 @Getter
 @Setter
 @AllArgsConstructor

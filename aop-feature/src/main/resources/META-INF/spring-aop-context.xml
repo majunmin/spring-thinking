@@ -10,7 +10,9 @@
 
     <aop:aspectj-autoproxy/>
 
-    <bean id="echoService" class="com.majm.aop.DefaultEchoService"/>
+    <bean id="echoService" class="com.majm.aop.DefaultEchoService">
+        <aop:scoped-proxy/>
+    </bean>
 
     <bean id="echoServiceFactoryBean" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="targetName" value="echoService"/>
@@ -20,5 +22,21 @@
     </bean>
 
     <bean id="echoServiceMethodInterceptor" class="com.majm.aop.EchoServiceMethodInterceptor"/>
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="aspectXmlConfig" class="com.majm.aop.config.AspectXmlConfig"/>
+
+    <aop:config>
+        <aop:aspect id="AspectXmlConfig" ref="aspectXmlConfig">
+            <aop:pointcut id="anyPublicMethod" expression="execution(public * *(..))"/>
+            <aop:around method="aroundAnyPublicMethod" pointcut-ref="anyPublicMethod"/>
+            <aop:before method="beforeAnyPublicMethod" pointcut-ref="anyPublicMethod"/>
+            <aop:before method="beforeAnyPublicMethod" pointcut="execution(public * *(..))"/>
+            <aop:after method="finalizeAnyPublicMethod" pointcut-ref="anyPublicMethod"/>
+            <aop:after-returning method="afterAnyPublicMethod" pointcut-ref="anyPublicMethod"/>
+            <aop:after-throwing method="afterThrowingAnyPublicMethod" pointcut-ref="anyPublicMethod"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
