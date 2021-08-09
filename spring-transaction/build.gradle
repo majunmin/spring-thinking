@@ -12,16 +12,27 @@ repositories {
 dependencies {
     implementation project(':think-common')
 
-    implementation 'org.springframework.boot:spring-boot-starter:2.4.5'
-    implementation 'org.springframework:spring-context:5.3.7'
+    implementation 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'mysql:mysql-connector-java:8.0.26'
+    implementation 'com.alibaba:druid:1.2.6'
+
+//    log
     implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation 'org.apache.logging.log4j:log4j-api:2.14.1' // log4j2 api 接口
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'  // lo4j2  的日志输出核心包
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.14.1'  // slf4j 转接到  log4j2 日志输出框架
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
 
-    implementation 'org.projectlombok:lombok:1.18.20'
+
+    implementation 'org.springframework:spring-jdbc:5.3.7'
+    implementation 'org.springframework:spring-context:5.3.7'
+    implementation 'org.springframework:spring-tx:5.3.7'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.springframework:spring-test:5.3.7'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }

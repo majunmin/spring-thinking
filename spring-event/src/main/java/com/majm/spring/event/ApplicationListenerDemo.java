@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
@@ -24,6 +25,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @Slf4j
 @EnableAsync
+@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class ApplicationListenerDemo implements ApplicationEventPublisherAware {
 
 
@@ -41,7 +43,7 @@ public class ApplicationListenerDemo implements ApplicationEventPublisherAware {
 
         // ApplicationEventMulticaser
         applicationContext.start();
-//        应用上下文关闭
+        // 应用上下文关闭
         applicationContext.close();
     }
 

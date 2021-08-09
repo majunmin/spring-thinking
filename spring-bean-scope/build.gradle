@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     implementation project(':think-common')
-    implementation 'org.springframework:spring-context:5.3.6'
+    implementation 'org.springframework:spring-context:5.3.7'
     implementation 'org.springframework.cloud:spring-cloud-context:3.0.2'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
